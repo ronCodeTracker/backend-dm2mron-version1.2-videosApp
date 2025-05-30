@@ -1,0 +1,19 @@
+{
+  "name": "backend-dm2mron-videoapp",
+  "version": "1.2.0",
+  "description": "backend for video app for Daron for drone video footage",
+  "license": "ISC",
+  "author": "Ronald Kiefer",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.817.0",
+    "aws-sdk": "^2.1692.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "multer": "^2.0.0"
+  }
+}
