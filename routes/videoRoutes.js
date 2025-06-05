@@ -88,6 +88,7 @@ router.delete('/videos/:key', async (req, res) => {
 
 
 router.get('/videos/download/:key', async (req, res) => {
+  console.log("backend stream hit for key2:", req.params.key);
   try {
     const key = req.params.key; // This will capture everything after /videos/download/
     const { stream, contentType, contentLength, fileName } = await downloadVideo(key);
