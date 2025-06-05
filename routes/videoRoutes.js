@@ -28,9 +28,11 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   }
 });
 
-// Stream video route
-router.get('/videos/:key/stream', async (req, res) => {
-     console.log("backend stream hit");
+
+
+// Stream video route (key at the end)
+router.get('/videos/stream/:key', async (req, res) => {
+  console.log("backend stream hit for key:", req.params.key);
 
   try {
     const key = req.params.key;
@@ -47,6 +49,8 @@ router.get('/videos/:key/stream', async (req, res) => {
     res.status(404).json({ error: 'Video not found' });
   }
 });
+
+
 
 
 
