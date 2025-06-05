@@ -28,6 +28,25 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   }
 });
 
+// Stream video route
+router.get('/videos/:key/stream', async (req, res) => {
+  try {
+    const key = req.params.key;
+    const { stream, contentType, contentLength } = await downloadVideo(key);
+
+    // CORS for this route
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Accept-Ranges', 'bytes');
+    res.header('Content-Type', contentType);
+    res.header('Content-Length', contentLength);
+
+    stream.pipe(res);
+  } catch (err) {
+    res.status(404).json({ error: 'Video not found' });
+  }
+});
+
+
 
 // get videos
 router.get('/videos', async (req, res) => {
