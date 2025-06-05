@@ -30,6 +30,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
 // Stream video route
 router.get('/videos/:key/stream', async (req, res) => {
+     console.log("backend stream hit");
+
   try {
     const key = req.params.key;
     const { stream, contentType, contentLength } = await downloadVideo(key);
