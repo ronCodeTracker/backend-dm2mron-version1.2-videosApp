@@ -58,14 +58,27 @@ export async function listVideos() {
 // Download video (returns a stream and content type)
 
 export async function downloadVideo(key) {
+  console.log('[downloadVideo] Requested key:', key); // Debug: log the key
   const params = { Bucket: bucket, Key: key };
+  console.log('[downloadVideo] Params:', params); // Debug: log the params
+  try{
   const data = await s3.send(new GetObjectCommand(params));
+  console.log('[downloadVideo] S3 GetObjectCommand success:', {
+      ContentType: data.ContentType,
+      ContentLength: data.ContentLength,
+      FileName: key.split('/').pop(),
+    }); // Debug: log the result metadata
+  
   return {
     stream: data.Body, // This is a readable stream
     contentType: data.ContentType || 'application/octet-stream',
     contentLength: data.ContentLength,
     fileName: key.split('/').pop(),
   };
+} catch (err) {
+  console.error('[downloadVideo] S3 GetObjectCommand error:', err); // Debug: log the error
+    throw err;
+}
 }
 
 
