@@ -38,11 +38,7 @@ router.get('/videos/stream/:key', async (req, res) => {
     const key = req.params.key;
     const { stream, contentType, contentLength } = await downloadVideo(key);
 
-    // CORS for this route
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Accept-Ranges', 'bytes');
-    res.header('Content-Type', contentType);
-    res.header('Content-Length', contentLength);
+    
 
     stream.pipe(res);
   } catch (err) {
@@ -57,11 +53,6 @@ router.get('/videos/stream/:key', async (req, res) => {
 // get videos
 router.get('/videos', async (req, res) => {
 
-// Enable CORS for this route
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  
 
 
   try {
@@ -76,11 +67,7 @@ router.get('/videos', async (req, res) => {
 //delete
 router.delete('/videos/delete/:key', async (req, res) => {
 
-  // Enable CORS for this route
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
+  
 
   try {
     await deleteVideo(req.params.key);
