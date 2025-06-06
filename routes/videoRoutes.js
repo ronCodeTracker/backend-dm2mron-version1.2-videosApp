@@ -91,8 +91,10 @@ router.get('/download/:key', async (req, res) => {
   console.log("backend stream hit for key2:", req.params.key);
   try {
     const key = req.params.key; // This will capture everything after /videos/download/
-    const { stream, contentType, contentLength, fileName } = await downloadVideo(key);
-    res.setHeader('Content-Type', contentType);
+   // const { stream, contentType, contentLength, fileName } = await downloadVideo(key);
+    const result = await downloadVideo(key);
+    console.log("downloadVideo result:", result); // <-- Add this line
+   res.setHeader('Content-Type', contentType);
     res.setHeader('Content-Length', contentLength);
     res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
     stream.pipe(res);  
