@@ -74,7 +74,7 @@ router.get('/videos', async (req, res) => {
 
 
 //delete
-router.delete('/videos/:key', async (req, res) => {
+router.delete('/videos/delete/:key', async (req, res) => {
 
   // Enable CORS for this route
   res.header('Access-Control-Allow-Origin', '*');
